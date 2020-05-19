@@ -1,13 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="container">
-        
-    </div>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./css/index.css" />
+        <link rel="stylesheet" href="./css/carousel.css" />
+        <link rel="stylesheet" href="./css/windmill.css" />
+        <link rel="stylesheet" href="./css/loading.css" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="container">
+            <!-- 登录框 -->
+            <section class="loading">
+                <span></span>
+            </section>
+
+            <!-- 风车 -->
+            <section class="windmill">
+                <div class="windmill-shade">
+                    <div class="windmill-box">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- B站点赞三连 -->
+            <section class="three-link">
+
+            </section>
+
+
+
+
+
+
+            
+            <section class="circle-jump"></section>
+
+            <!-- 轮播图 -->
+            <section class="carousel"></section>
+
+            <div class="nav-list">
+                <ul></ul>
+            </div>
+        </div>
+
+        <script>
+            let $ = (name) => document.querySelector(name);
+            let $$ = (name) => document.querySelectorAll(name);
+
+            class List {
+                constructor() {
+                    this.sectionPosition = [];
+                    this.init();
+                }
+
+                init() {
+                    this.createList();
+                    this.getSectionPosition();
+                    this.screenScroll();
+                }
+
+                createList() {
+                    for (let i = 0; i < $$("section").length; i++) {
+                        const newLi = document.createElement("li");
+                        $(".nav-list ul").append(newLi);
+                    }
+                    $(".nav-list ul li").classList.add("active");
+                }
+
+                getSectionPosition() {
+                    for (let i = 0; i < $$("section").length; i++) {
+                        this.sectionPosition.push($$("section")[i].offsetTop);
+                    }
+                }
+
+                changListActive(y){
+                     
+                    this.sectionPosition.forEach((item,index)=> {
+                        y > item ? console.log(index) : null;
+                    })
+                }
+
+
+                screenScroll() {
+                
+                    window.onscroll = (event) => {
+                        console.log(event.path[1].scrollY);
+                        this.changListActive(event.path[1].scrollY)
+                    };
+                }
+            }
+
+
+            new List();
+        </script>
+    </body>
 </html>

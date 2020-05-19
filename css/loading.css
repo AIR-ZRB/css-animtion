@@ -1,0 +1,50 @@
+.loading {
+    background: #000;
+}
+
+.loading span {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(45deg,transparent,transparent 40%,#e67);
+    animation: loading 2.5s linear infinite;
+   position: relative;
+}
+
+.loading span::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    border-radius: 50%;
+    background: #000;
+}
+
+.loading span::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 115%;
+    height: 115%;
+    border-radius: 50%;
+    background: linear-gradient(45deg,transparent,transparent 40%,#e67);
+    filter: blur(30px);
+}
+
+
+
+@keyframes loading {
+    0% {
+        transform: rotateZ(0deg);
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        transform: rotateZ(359deg);
+        filter: hue-rotate(360deg);
+    }
+}
