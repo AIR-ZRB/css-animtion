@@ -7,32 +7,38 @@
 .accordion {
     color: #fff;
     width: 400px;
-    height: auto;
-    border-radius: 10px;
+    border-radius: 8px;
+    /* border-radius: 10px; */
+    
 }
 
-.accordion dl {
-   
-}
-
-
-.accordion dl dt,
-.accordion dl dd {
+.accordion a,
+.accordion ul li {
     width: 400px;
     line-height: 50px;
     padding-left: 30px;
     cursor: pointer;
+    display: block;
 }
 
-.accordion dl dt {
-    background: #2a92df;
+.accordion a {
+    background: #2A92DF;
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
 }
 
-.accordion dl dd {
-    background: #000;
+.accordion ul {
+    max-height: 0;
+    transition: all .3s;
+    overflow: hidden;
+}
+
+.accordion ul li{
+    background: #343334;
     position: relative;
 }
-.accordion dl dd::before {
+.accordion ul li::before {
     content: "";
     position: absolute;
     left: 0;
@@ -44,10 +50,11 @@
     opacity: 0;
 }
 
-.accordion dl dd:hover::before {
-
+.accordion ul li:hover::before {
     opacity: 1;
-    /* border-left: 10px solid #2a92df */
 }
 
 
+.accordion div:target ul {
+    max-height: 100em;
+}
