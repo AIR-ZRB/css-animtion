@@ -1,0 +1,53 @@
+.accordion-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right,#9056ED,#82BEFC);
+}
+.accordion {
+    color: #fff;
+    width: 400px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.accordion dl {
+   
+}
+
+
+.accordion dl dt,
+.accordion dl dd {
+    width: 400px;
+    line-height: 50px;
+    padding-left: 30px;
+    cursor: pointer;
+}
+
+.accordion dl dt {
+    background: #2a92df;
+}
+
+.accordion dl dd {
+    background: #000;
+    position: relative;
+}
+.accordion dl dd::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 10px;
+    height: 100%;
+    background: #2a92df;
+    transition: all .5s;
+    /* display: none; */
+    opacity: 0;
+}
+
+.accordion dl dd:hover::before {
+
+    opacity: 1;
+    /* border-left: 10px solid #2a92df */
+}
+
+

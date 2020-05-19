@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="./css/carousel.css" />
         <link rel="stylesheet" href="./css/windmill.css" />
         <link rel="stylesheet" href="./css/loading.css" />
+        <link rel="stylesheet" href="./css/accordion-list.css">
         <title>Document</title>
     </head>
     <body>
@@ -30,77 +31,51 @@
                 </div>
             </section>
 
-
-            <!-- B站点赞三连 -->
-            <section class="three-link">
-
+            <!-- 手风琴 -->
+            <section class="accordion-list">
+                <div class="accordion">
+                    <dl>
+                        <dt>Profile</dt>
+                        <dd>Posts</dd>
+                        <dd>Picture</dd>
+                    </dl>
+                    <dl>
+                        <dt>Messages</dt>
+                        <dd>New</dd>
+                        <dd>Sent</dd>
+                        <dd>Spam</dd>
+                    </dl>
+                    <dl>
+                        <dt>Settings</dt>
+                        <dd>Posts</dd>
+                        <dd>Picture</dd>
+                    </dl>
+                    <dl>
+                        <dt>Logout</dt>
+                        <dd>Posts</dd>
+                        <dd>Picture</dd>
+                    </dl>
+                </div>
             </section>
 
 
+            <!-- B站点赞三连 -->
+            <section class="three-link">
+            </section>
 
-
-
-
-            
             <section class="circle-jump"></section>
 
             <!-- 轮播图 -->
             <section class="carousel"></section>
 
+
+
+            <!-- 右侧导航球 -->
             <div class="nav-list">
                 <ul></ul>
             </div>
         </div>
 
-        <script>
-            let $ = (name) => document.querySelector(name);
-            let $$ = (name) => document.querySelectorAll(name);
-
-            class List {
-                constructor() {
-                    this.sectionPosition = [];
-                    this.init();
-                }
-
-                init() {
-                    this.createList();
-                    this.getSectionPosition();
-                    this.screenScroll();
-                }
-
-                createList() {
-                    for (let i = 0; i < $$("section").length; i++) {
-                        const newLi = document.createElement("li");
-                        $(".nav-list ul").append(newLi);
-                    }
-                    $(".nav-list ul li").classList.add("active");
-                }
-
-                getSectionPosition() {
-                    for (let i = 0; i < $$("section").length; i++) {
-                        this.sectionPosition.push($$("section")[i].offsetTop);
-                    }
-                }
-
-                changListActive(y){
-                     
-                    this.sectionPosition.forEach((item,index)=> {
-                        y > item ? console.log(index) : null;
-                    })
-                }
-
-
-                screenScroll() {
-                
-                    window.onscroll = (event) => {
-                        console.log(event.path[1].scrollY);
-                        this.changListActive(event.path[1].scrollY)
-                    };
-                }
-            }
-
-
-            new List();
-        </script>
+        <script src="./index.js"></script>
     </body>
 </html>
