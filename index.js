@@ -4,6 +4,7 @@ let $$ = (name) => document.querySelectorAll(name);
 class List {
     constructor() {
         this.sectionPosition = [];
+        this.sectionTitle = ["Loading","风车","手风琴菜单","B站长按三连","轮播图"]
         this.init();
     }
 
@@ -16,6 +17,8 @@ class List {
     createList() {
         for (let i = 0; i < $$("section").length; i++) {
             const newLi = document.createElement("li");
+            newLi.title = this.sectionTitle[i];
+            newLi.classList.add("navigation-list");
             $(".nav-list ul").append(newLi);
         }
         $(".nav-list ul li").classList.add("active");
@@ -25,18 +28,25 @@ class List {
         for (let i = 0; i < $$("section").length; i++) {
             this.sectionPosition.push($$("section")[i].offsetTop);
         }
+        console.log(this.sectionPosition);
     }
 
     changListActive(y){
          
         this.sectionPosition.forEach((item,index)=> {
-            y > item ? console.log(index) : null;
+            // y > item ? console.log(index) : null;
+            if(y >= item) {
+                this.sectionPosition.forEach((item,index)=> {
+                    $$(".navigation-list")[index].classList.remove("active")
+                })
+                $$(".navigation-list")[index].classList.add("active")
+            }
         })
     }
 
 
     screenScroll() {
-    
+        // 这里需要加入一个节流防抖
         window.onscroll = (event) => {
             console.log(event.path[1].scrollY);
             this.changListActive(event.path[1].scrollY)
