@@ -9,8 +9,8 @@ class List {
     }
 
     init() {
-        this.createList();
         this.getSectionPosition();
+        this.createList();
         this.screenScroll();
     }
 
@@ -18,6 +18,7 @@ class List {
         for (let i = 0; i < $$("section").length; i++) {
             const newLi = document.createElement("li");
             newLi.title = this.sectionTitle[i];
+            newLi.position = this.sectionPosition[i];
             newLi.classList.add("navigation-list");
             $(".nav-list ul").append(newLi);
         }
@@ -32,9 +33,7 @@ class List {
     }
 
     changListActive(y){
-         
         this.sectionPosition.forEach((item,index)=> {
-            // y > item ? console.log(index) : null;
             if(y >= item) {
                 this.sectionPosition.forEach((item,index)=> {
                     $$(".navigation-list")[index].classList.remove("active")
@@ -51,6 +50,11 @@ class List {
             console.log(event.path[1].scrollY);
             this.changListActive(event.path[1].scrollY)
         };
+
+        $(".nav-list ul").onclick = (event) => {
+            window.scrollTo(0,event.target.position);
+        }
+
     }
 }
 
